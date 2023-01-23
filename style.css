@@ -1,20 +1,45 @@
+* {
+}
+
+body {
+  background-color: #292524;
+  color: #fafaf9;
+}
+
 h1 {
   font-size: 40px;
   text-transform: uppercase;
   text-align: center;
+  font-family: "Crimson Text", serif;
+  color: rgb(130, 205, 205);
+  color: #fafaf9;
 }
 
-p {
+.story {
   font-size: 20px;
   line-height: 1.4;
-  font-family: sans-serif;
+  font-family: "Inter", sans-serif;
+  color: #fafaf9;
+  background-color: #78716c;
 }
 
-span {
+.category {
   text-transform: uppercase;
   font-size: 15px;
+  color: #fafaf9;
 }
 
 ul {
   list-style: none;
+  font-family: "Crimson Text", serif;
+}
+
+.story-form {
+  background-color: #78716c;
+}
+
+.headerimages {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

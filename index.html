@@ -4,15 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Today I helped someone!</title>
   </head>
   <body>
     <header>
-      <img src="logo.png" height="68" width="68" alt="Today I helped Logo" />
+      <div class="headerimages">
+        <img
+          src="images/box_bozzuto.png"
+          height="68"
+          width="100"
+          alt="Today I helped Logo"
+        />
+        <img
+          src="images/person.png"
+          height="100"
+          width="200"
+          alt="Today I helped Logo"
+        />
+      </div>
       <h1>Today I helped . . .</h1>
-      <button>Share a story!</button>
+      <button class="button1">Share a story!</button>
     </header>
-    <form>
+    <form class="story-form">
       <input type="text" placeholder="Share it with your team!" />
       <span>200</span>
       <input type="text" placeholder="Your name!" />
@@ -39,13 +59,13 @@
       <section>
         <ul>
           <li>
-            <p>
+            <p class="story">
               Chalk and cheese gouda stinking bishop babybel when the cheese
               comes out everybody's happy cheese triangles port-salut swiss.
               <a href="http://www.cheeseipsum.co.uk/" target="_blank"
                 >(Source)</a
               >
-              <span>#Mozzarella#</span>
+              <span class="category">#Mozzarella#</span>
             </p>
             <div>
               <button>👍 <strong>25</strong></button>
@@ -54,7 +74,7 @@
             </div>
           </li>
           <li>
-            <p>
+            <p class="story">
               Queso stinking bishop brie swiss cheese and biscuits cauliflower
               cheese cheese triangles swiss. Monterey jack croque monsieur
               squirty cheese emmental caerphilly cheddar lancashire cottage
@@ -62,7 +82,7 @@
               <a href="http://www.cheeseipsum.co.uk/" target="_blank"
                 >(Source)</a
               >
-              <span>#Parmesan#</span>
+              <span class="category">#Parmesan#</span>
             </p>
             <div>
               <button>👍 <strong>8</strong></button>
