@@ -9,7 +9,7 @@ body {
   color: #fafaf9;
   text-transform: uppercase;
   font-family: "Inter", sans-serif;
-  padding: 50px;
+  padding: 50px 64px;
 }
 
 h1 {
@@ -52,7 +52,8 @@ ul {
 .header {
   margin-bottom: 40px;
   background: url(/images/lobby.jpeg);
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   display: flex;
   align-items: center;
@@ -84,4 +85,29 @@ ul {
 .main {
   display: grid;
   grid-template-columns: 250px 1fr;
+  gap: 50px;
+}
+
+.container {
+  max-width: 1500px;
+  background-color: rgb(15, 154, 52);
+  margin: 0 auto;
+}
+
+.logo image {
+  height: 68px;
+  width: 68px;
+}
+
+.source:link,
+.source:visited {
+  color: #a9a9a9;
+}
+
+.source:hover {
+  color: rgb(15, 154, 52);
+}
+
+.source:active {
+  color: blue;
 }
