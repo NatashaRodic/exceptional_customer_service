@@ -187,7 +187,6 @@ ul {
   font-size: 17px;
   color: inherit;
   font-family: inherit;
-  max-width: 220px;
 }
 
 .story-form input::placeholder {
@@ -202,4 +201,32 @@ ul {
 
 .story-form input:first-child {
   flex-grow: 1;
+}
+
+@media (max-width: 1200px) {
+  .story {
+    background-color: red;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding: 32px 48px;
+  }
+  .story-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .story-form input,
+  .story-form select {
+    width: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
 }
