@@ -30,7 +30,7 @@ h1 {
   color: #fafaf9;
   background-color: #264935;
   padding: 20px 30px;
-  border: 2px dotted rgb(177 250 203);
+
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -43,6 +43,7 @@ h1 {
   font-size: 15px;
   color: #fafaf9;
   padding: 3px 10px;
+  border-radius: 15px;
 }
 
 ul {
@@ -62,9 +63,11 @@ ul {
 .story-form {
   margin-bottom: 40px;
   background-color: #78716c;
-  padding: 20px 50px;
+  padding: 15px 30px;
   border-radius: 8px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .headerimages {
@@ -173,4 +176,30 @@ ul {
 
 .buttons-like-dislike button:hover {
   background-color: rgb(132, 127, 127);
+}
+
+.story-form input,
+.story-form select {
+  background-color: rgb(169, 163, 163);
+  border: none;
+  border-radius: 100px;
+  padding: 15px;
+  font-size: 17px;
+  color: inherit;
+  font-family: inherit;
+  max-width: 220px;
+}
+
+.story-form input::placeholder {
+  color: rgb(217, 211, 211);
+}
+
+.story-form {
+  font-weight: 500;
+  font-size: 15px;
+  margin-right: 18px;
+}
+
+.story-form input:first-child {
+  flex-grow: 1;
 }
