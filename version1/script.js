@@ -3,7 +3,7 @@ const initialFacts = [
     id: 1,
     text: "Chalk and cheese gouda stinking bishop babybel when the cheese comes out everybody's happy cheese triangles port-salut swiss.",
     source: "http://www.cheeseipsum.co.uk/",
-    category: "Mozzarella",
+    category: "MOZZARELLA",
     votesInteresting: 25,
     votesMindblowing: 1,
     votesFalse: 2,
@@ -13,7 +13,7 @@ const initialFacts = [
     id: 2,
     text: "Queso stinking bishop brie swiss cheese and biscuits cauliflower cheese cheese triangles swiss. Monterey jack croque monsieur squirty cheese emmental caerphilly cheddar lancashire cottage cheese.",
     source: "http://www.cheeseipsum.co.uk/",
-    category: "Parmesan",
+    category: "PARMESAN",
     votesInteresting: 8,
     votesMindblowing: 0,
     votesFalse: 1,
@@ -52,8 +52,31 @@ const storyList = document.querySelector(".story-list");
 
 // Create DOM elements: Render facts in list
 storyList.innerHTML = "";
-createStoryList(initialFacts);
 
+// Load data from Supabase
+
+loadFacts();
+async function loadFacts() {
+  const res = await fetch(
+    "https://rkqwebalpemdsnduxidn.supabase.co/rest/v1/ Facts",
+    {
+      headers: {
+        apikey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJrcXdlYmFscGVtZHNuZHV4aWRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQ3ODg0ODksImV4cCI6MTk5MDM2NDQ4OX0.yYBMJRjb_2eA3lc46W0CyeHuPVWTm7dPKeyWksvB4sI",
+        autohorizarion:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJrcXdlYmFscGVtZHNuZHV4aWRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQ3ODg0ODksImV4cCI6MTk5MDM2NDQ4OX0.yYBMJRjb_2eA3lc46W0CyeHuPVWTm7dPKeyWksvB4sI",
+      },
+    }
+  );
+  const data = await res.json();
+  console.log(data);
+
+  const filteredData = data.filter((story) => story.category === "PARMESAN");
+
+  createStoryList(filteredData);
+}
+
+// createStoryList(initialFacts);
 function createStoryList(dataArray) {
   const htmlArr = dataArray.map(
     (story) => `<li class="story">
@@ -72,7 +95,7 @@ function createStoryList(dataArray) {
         </li>`
   );
   const noviS = htmlArr.join("");
-  console.log(noviS);
+
   storyList.insertAdjacentHTML("afterbegin", noviS);
 }
 
