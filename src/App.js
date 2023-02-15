@@ -36,22 +36,25 @@ const initialStories = [
 
 function App() {
   const [showForm, setShowForm] = useState();
+  const [stories, setStories] = useState(initialStories);
 
   return (
     <>
       <Header showForm={showForm} setShowForm={setShowForm} />
 
-      {showForm ? <NewStoryForm /> : null}
+      {showForm ? (
+        <NewStoryForm setStories={setStories} setShowForm={setShowForm} />
+      ) : null}
 
       <main className="main">
         <CategoryFilter />
-        <StoryList />
+        <StoryList stories={stories} />
       </main>
     </>
   );
 }
 
-function Header({ showForm, setShowForm }) {
+function Header({ showForm }) {
   const appTitle = "Bozzuto Experience";
   return (
     <header className="header">
@@ -80,9 +83,6 @@ function Header({ showForm, setShowForm }) {
     </header>
   );
 }
-function NewStoryForm() {
-  return <form className="story-form">Story Form</form>;
-}
 
 const CATEGORIES = [
   { name: "Pets", color: "#3b82f6" },
@@ -94,6 +94,66 @@ const CATEGORIES = [
   { name: "Feta", color: "#f97316" },
   { name: "Gouda", color: "#8b5cf6" },
 ];
+function NewStoryForm({ setStories, setShowForm }) {
+  const [text, setText] = useState("");
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const textLength = text.length;
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(text, name, category);
+    if (text && name && category && textLength <= 200) {
+      const newStory = {
+        id: Math.round(Math.random() * 10000000),
+        text,
+        name,
+        category,
+        votesLike: 0,
+        votesDislike: 0,
+        votesMindblowing: 0,
+        createdIn: new Date().getFullYear(),
+      };
+      setStories((stories) => [newStory, ...stories]);
+      setText("");
+      setName("");
+      setCategory("");
+      setShowForm(false);
+    }
+  }
+  return (
+    <form className="story-form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Share it with your team!"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <span>{200 - textLength}</span>
+      <input
+        value={name}
+        type="text"
+        placeholder="Your name!"
+        onChange={(e) => setName(e.target.value)}
+      />
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        name=""
+        id=""
+      >
+        <option value="">Choose category:</option>
+        <option value="Mozzarella">Mozzarella</option>
+        {CATEGORIES.map((cat) => (
+          <option key={cat.name} value={cat.name}>
+            {cat.name.toUpperCase()}
+          </option>
+        ))}
+      </select>
+      <button className="btn btn-large">Post</button>
+    </form>
+  );
+}
 
 function CategoryFilter() {
   return (
@@ -111,8 +171,7 @@ function CategoryFilter() {
     </aside>
   );
 }
-function StoryList() {
-  const stories = initialStories;
+function StoryList({ stories }) {
   return (
     <section>
       <ul className="story-list">
