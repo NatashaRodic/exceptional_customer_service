@@ -35,7 +35,7 @@ const initialStories = [
 ];
 
 function App() {
-  const [showForm, setShowForm] = useState();
+  const [showForm, setShowForm] = useState(false);
   const [stories, setStories] = useState(initialStories);
 
   return (
@@ -54,7 +54,7 @@ function App() {
   );
 }
 
-function Header({ showForm }) {
+function Header({ showForm, setShowForm }) {
   const appTitle = "Bozzuto Experience";
   return (
     <header className="header">
