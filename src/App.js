@@ -1,5 +1,6 @@
-import { createFactory, useState } from "react";
+import { createFactory, useEffect, useState } from "react";
 import "./style.css";
+import supabase from "./supabase";
 
 const initialStories = [
   {
@@ -36,7 +37,14 @@ const initialStories = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [stories, setStories] = useState(initialStories);
+  const [stories, setStories] = useState([]);
+  useEffect(function () {
+    async function getStories() {
+      const { data: Facts, error } = await supabase.from(" Facts").select("*");
+      setStories(stories);
+    }
+    getStories();
+  }, []);
 
   return (
     <>
