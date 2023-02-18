@@ -1,6 +1,6 @@
 import { createFactory, useEffect, useState } from "react";
-import "./style.css";
 import supabase from "./supabase";
+import "./style.css";
 
 const initialStories = [
   {
@@ -27,7 +27,7 @@ const initialStories = [
     id: 3,
     text: "Fromage frais feta chalk and cheese. Swiss fromage frais cheese and biscuits croque monsieur bavarian bergkase cheese strings red leicester goat. ",
     source: "http://www.cheeseipsum.co.uk/",
-    category: "Packages",
+    category: "Packa  ges",
     votesLike: 8,
     votesDislike: 3,
     votesMindblowing: 1,
@@ -40,7 +40,9 @@ function App() {
   const [stories, setStories] = useState([]);
   useEffect(function () {
     async function getStories() {
-      const { data: Facts, error } = await supabase.from(" Facts").select("*");
+      const { data: stories, error } = await supabase
+        .from("stories")
+        .select("*");
       setStories(stories);
     }
     getStories();
