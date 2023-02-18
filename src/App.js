@@ -38,8 +38,10 @@ const initialStories = [
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [stories, setStories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(function () {
     async function getStories() {
+      setIsLoading(true);
       const { data: stories, error } = await supabase
         .from("stories")
         .select("*");
@@ -58,12 +60,16 @@ function App() {
 
       <main className="main">
         <CategoryFilter />
+        {isLoading ? <Loader /> : <StoryList stories={stories} />}
+
         <StoryList stories={stories} />
       </main>
     </>
   );
 }
-
+function Loader() {
+  return <p>Loading...</p>;
+}
 function Header({ showForm, setShowForm }) {
   const appTitle = "Bozzuto Experience";
   return (
