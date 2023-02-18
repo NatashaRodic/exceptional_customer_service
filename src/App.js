@@ -45,7 +45,8 @@ function App() {
       setIsLoading(true);
       const { data: stories, error } = await supabase
         .from("stories")
-        .select("*");
+        .select("*")
+        .order("votesLike", { ascending: false });
       setStories(stories);
       setIsLoading(false);
     }
