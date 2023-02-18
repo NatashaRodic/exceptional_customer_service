@@ -46,7 +46,8 @@ function App() {
       const { data: stories, error } = await supabase
         .from("stories")
         .select("*")
-        .order("votesLike", { ascending: false });
+        .order("votesLike", { ascending: false })
+        .limit(1000);
       setStories(stories);
       setIsLoading(false);
     }
