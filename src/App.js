@@ -48,7 +48,12 @@ function App() {
         .select("*")
         .order("votesLike", { ascending: false })
         .limit(1000);
+
+      console.log(error);
       setStories(stories);
+
+      if (!error) setStories(stories);
+      else alert("An unexpected error has occurred. Please try again later!");
       setIsLoading(false);
     }
     getStories();
