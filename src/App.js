@@ -39,6 +39,7 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [stories, setStories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(function () {
     async function getStories() {
       setIsLoading(true);
@@ -46,6 +47,7 @@ function App() {
         .from("stories")
         .select("*");
       setStories(stories);
+      setIsLoading(false);
     }
     getStories();
   }, []);
@@ -68,7 +70,7 @@ function App() {
   );
 }
 function Loader() {
-  return <p>Loading...</p>;
+  return <p className="loading">Loading...</p>;
 }
 function Header({ showForm, setShowForm }) {
   const appTitle = "Bozzuto Experience";

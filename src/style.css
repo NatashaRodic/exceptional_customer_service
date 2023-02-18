@@ -229,6 +229,13 @@ ul {
     grid-template-columns: 1fr;
   }
 }
+.loading {
+  text-align: center;
+
+  font-size: 30px;
+  font-weight: 500;
+  margin-top: 30px;
+}
 
 .hidden {
   display: none !important;
