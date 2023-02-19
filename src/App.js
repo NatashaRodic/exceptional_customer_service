@@ -130,21 +130,28 @@ function NewStoryForm({ setStories, setShowForm }) {
   const [category, setCategory] = useState("");
   const textLength = text.length;
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log(text, name, category);
     if (text && name && category && textLength <= 200) {
-      const newStory = {
-        id: Math.round(Math.random() * 10000000),
-        text,
-        name,
-        category,
-        votesLike: 0,
-        votesDislike: 0,
-        votesMindblowing: 0,
-        createdIn: new Date().getFullYear(),
-      };
-      setStories((stories) => [newStory, ...stories]);
+      // const newStory = {
+      //   id: Math.round(Math.random() * 10000000),
+      //   text,
+      //   name,
+      //   category,
+      //   votesLike: 0,
+      //   votesDislike: 0,
+      //   votesMindblowing: 0,
+      //   createdIn: new Date().getFullYear(),
+      // };
+      // 1. Upload stories to Supabase and receive the new story object
+      const { data: newStory, error } = await supabase
+        .from("stories")
+        .insert([{ text, name, category }])
+        .select();
+      console.log(newStory);
+
+      setStories((stories) => [newStory[0], ...stories]);
       setText("");
       setName("");
       setCategory("");
