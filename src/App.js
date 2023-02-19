@@ -212,6 +212,13 @@ function CategoryFilter({ setCurrentCategory }) {
   );
 }
 function StoryList({ stories }) {
+  if (stories.length === 0) {
+    return (
+      <p className="loading">
+        Be the first to create a story in this category ↑↑↑
+      </p>
+    );
+  }
   return (
     <section>
       <ul className="story-list">
