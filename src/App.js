@@ -74,9 +74,11 @@ function App() {
 
       <main className="main">
         <CategoryFilter setCurrentCategory={setCurrentCategory} />
-        {isLoading ? <Loader /> : <StoryList stories={stories} />}
-
-        <StoryList stories={stories} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <StoryList stories={stories} setStories={setStories} />
+        )}
       </main>
     </>
   );
@@ -128,6 +130,7 @@ function NewStoryForm({ setStories, setShowForm }) {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
   const textLength = text.length;
 
   async function handleSubmit(e) {
@@ -145,13 +148,15 @@ function NewStoryForm({ setStories, setShowForm }) {
       //   createdIn: new Date().getFullYear(),
       // };
       // 1. Upload stories to Supabase and receive the new story object
+      setIsUploading(true);
       const { data: newStory, error } = await supabase
         .from("stories")
         .insert([{ text, name, category }])
         .select();
+      setIsUploading(false);
       console.log(newStory);
 
-      setStories((stories) => [newStory[0], ...stories]);
+      if (!error) setStories((stories) => [newStory[0], ...stories]);
       setText("");
       setName("");
       setCategory("");
@@ -165,6 +170,7 @@ function NewStoryForm({ setStories, setShowForm }) {
         placeholder="Share it with your team!"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        disabled={isUploading}
       />
       <span>{200 - textLength}</span>
       <input
@@ -172,10 +178,12 @@ function NewStoryForm({ setStories, setShowForm }) {
         type="text"
         placeholder="Your name!"
         onChange={(e) => setName(e.target.value)}
+        disabled={isUploading}
       />
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
+        disabled={isUploading}
         name=""
         id=""
       >
@@ -187,7 +195,9 @@ function NewStoryForm({ setStories, setShowForm }) {
           </option>
         ))}
       </select>
-      <button className="btn btn-large">Post</button>
+      <button className="btn btn-large" disabled={isUploading}>
+        Post
+      </button>
     </form>
   );
 }
@@ -218,7 +228,7 @@ function CategoryFilter({ setCurrentCategory }) {
     </aside>
   );
 }
-function StoryList({ stories }) {
+function StoryList({ stories, setStories }) {
   if (stories.length === 0) {
     return (
       <p className="loading">
@@ -230,13 +240,28 @@ function StoryList({ stories }) {
     <section>
       <ul className="story-list">
         {stories.map((story) => (
-          <Story key={story.id} story={story} />
+          <Story key={story.id} story={story} setStories={setStories} />
         ))}
       </ul>
     </section>
   );
 }
-function Story({ story }) {
+function Story({ story, setStories }) {
+  const [isUpdating, setIsUpdating] = useState(false);
+  async function handleVote() {
+    setIsUpdating(true);
+    const { data: updatedStory, error } = await supabase
+      .from("stories")
+      .update({ votesLike: story.votesLike + 1 })
+      .eq("id", story.id)
+      .select();
+    setIsUpdating(false);
+    console.log(updatedStory);
+    if (!error)
+      setStories((stories) =>
+        stories.map((s) => (s.id === story.id ? updatedStory[0] : s))
+      );
+  }
   return (
     <li className="story">
       <p>
@@ -255,7 +280,9 @@ function Story({ story }) {
         {story.category}
       </span>
       <div className="buttons-like-dislike">
-        <button>👍 {story.votesLike}</button>
+        <button onClick={handleVote} disabled={isUpdating}>
+          👍 {story.votesLike}
+        </button>
         <button>👎 {story.votesDislike}</button>
         <button>🤯 {story.votesMindblowing}</button>
       </div>

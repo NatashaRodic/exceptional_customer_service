@@ -178,6 +178,10 @@ ul {
   background-color: rgb(132, 127, 127);
 }
 
+.buttons-like-dislike button:disabled {
+  background-color: #44403c;
+}
+
 .story-form input,
 .story-form select {
   background-color: rgb(169, 163, 163);
