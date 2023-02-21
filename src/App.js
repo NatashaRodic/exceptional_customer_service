@@ -289,7 +289,10 @@ function Story({ story, setStories }) {
         >
           👎 {story.votesDislike}
         </button>
-        <button onClick={() => handleVote("")} disabled={isUpdating}>
+        <button
+          onClick={() => handleVote("votesMindblowing")}
+          disabled={isUpdating}
+        >
           🤯 {story.votesMindblowing}
         </button>
       </div>
