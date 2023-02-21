@@ -248,11 +248,11 @@ function StoryList({ stories, setStories }) {
 }
 function Story({ story, setStories }) {
   const [isUpdating, setIsUpdating] = useState(false);
-  async function handleVote() {
+  async function handleVote(columnName) {
     setIsUpdating(true);
     const { data: updatedStory, error } = await supabase
       .from("stories")
-      .update({ votesLike: story.votesLike + 1 })
+      .update({ [columnName]: story[columnName] + 1 })
       .eq("id", story.id)
       .select();
     setIsUpdating(false);
@@ -280,11 +280,18 @@ function Story({ story, setStories }) {
         {story.category}
       </span>
       <div className="buttons-like-dislike">
-        <button onClick={handleVote} disabled={isUpdating}>
+        <button onClick={() => handleVote("votesLike")} disabled={isUpdating}>
           👍 {story.votesLike}
         </button>
-        <button>👎 {story.votesDislike}</button>
-        <button>🤯 {story.votesMindblowing}</button>
+        <button
+          onClick={() => handleVote("votesDislike")}
+          disabled={isUpdating}
+        >
+          👎 {story.votesDislike}
+        </button>
+        <button onClick={() => handleVote("")} disabled={isUpdating}>
+          🤯 {story.votesMindblowing}
+        </button>
       </div>
     </li>
   );
