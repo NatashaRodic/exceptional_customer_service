@@ -248,6 +248,7 @@ function StoryList({ stories, setStories }) {
 }
 function Story({ story, setStories }) {
   const [isUpdating, setIsUpdating] = useState(false);
+
   async function handleVote(columnName) {
     setIsUpdating(true);
     const { data: updatedStory, error } = await supabase
@@ -265,7 +266,6 @@ function Story({ story, setStories }) {
   return (
     <li className="story">
       <p>
-        {story.text}
         <a className="source" href={story.source} target="_blank">
           (Source)
         </a>
