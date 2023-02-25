@@ -117,6 +117,7 @@ function Header({ showForm, setShowForm }) {
 }
 
 const CATEGORIES = [
+  { name: "Mozzarella", color: "#3b82f6" },
   { name: "Pets", color: "#3b82f6" },
   { name: "Packages", color: "#16a34a" },
   { name: "Requests", color: "#ef4444" },
