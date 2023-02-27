@@ -121,13 +121,13 @@ function Header({ showForm, setShowForm }) {
 const CATEGORIES = [
   { name: "Pets", color: "#3b82f6" },
   { name: "Packages", color: "#16a34a" },
-  { name: "Mozzarella", color: "#3b82f6" },
-  { name: "Requests", color: "#ef4444" },
-  { name: "Brie", color: "#eab308" },
-  { name: "Swiss", color: "#db2777" },
-  { name: "Gruyere", color: "#14b8a6" },
-  { name: "Feta", color: "#f97316" },
-  { name: "Gouda", color: "#8b5cf6" },
+  { name: "Food Deliveries", color: "#3b82f6" },
+  { name: "Leasing", color: "#ef4444" },
+  { name: "Events/Social", color: "#eab308" },
+  { name: "Maintenance Requests", color: "#db2777" },
+  { name: "Bozzuto Standards", color: "#14b8a6" },
+  { name: "Team work", color: "#f97316" },
+  { name: "Exceptional Service", color: "#8b5cf6" },
 ];
 
 function NewStoryForm({ setStories, setShowForm }) {
