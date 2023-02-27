@@ -112,7 +112,17 @@ section {
   padding-bottom: 40px;
 }
 
-.source:link,
+.building {
+  color: #686d69;
+  text-decoration: none;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+.building:hover {
+  color: #ddfbe3;
+}
+
+/* .source:link,
 .source:visited {
   color: #a9a9a9;
   text-decoration: none;
@@ -126,7 +136,7 @@ section {
 
 .source:active {
   color: blue;
-}
+} */
 
 .btn {
   font-family: Arial, Helvetica, sans-serif;

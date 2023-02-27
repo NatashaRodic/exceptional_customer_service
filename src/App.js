@@ -83,9 +83,11 @@ function App() {
     </>
   );
 }
+
 function Loader() {
   return <p className="loading">Loading...</p>;
 }
+
 function Header({ showForm, setShowForm }) {
   const appTitle = "Bozzuto Experience";
   return (
@@ -117,9 +119,9 @@ function Header({ showForm, setShowForm }) {
 }
 
 const CATEGORIES = [
-  { name: "Mozzarella", color: "#3b82f6" },
   { name: "Pets", color: "#3b82f6" },
   { name: "Packages", color: "#16a34a" },
+  { name: "Mozzarella", color: "#3b82f6" },
   { name: "Requests", color: "#ef4444" },
   { name: "Brie", color: "#eab308" },
   { name: "Swiss", color: "#db2777" },
@@ -127,6 +129,7 @@ const CATEGORIES = [
   { name: "Feta", color: "#f97316" },
   { name: "Gouda", color: "#8b5cf6" },
 ];
+
 function NewStoryForm({ setStories, setShowForm }) {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
@@ -189,7 +192,7 @@ function NewStoryForm({ setStories, setShowForm }) {
         id=""
       >
         <option value="">Choose category:</option>
-        <option value="Mozzarella">Mozzarella</option>
+        {/* <option value="Mozzarella">Mozzarella</option> */}
         {CATEGORIES.map((cat) => (
           <option key={cat.name} value={cat.name}>
             {cat.name.toUpperCase()}
@@ -247,9 +250,9 @@ function StoryList({ stories, setStories }) {
     </section>
   );
 }
+
 function Story({ story, setStories }) {
   const [isUpdating, setIsUpdating] = useState(false);
-
   async function handleVote(columnName) {
     setIsUpdating(true);
     const { data: updatedStory, error } = await supabase
@@ -267,9 +270,7 @@ function Story({ story, setStories }) {
   return (
     <li className="story">
       <p>
-        <a className="source" href={story.source} target="_blank">
-          (Source)
-        </a>
+        {story.text} - <span className="building">{story.source}</span>
       </p>
       <span
         className="category"
