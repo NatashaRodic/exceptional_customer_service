@@ -153,6 +153,7 @@ section {
 .btn:hover {
   background-image: linear-gradient(180deg, rgb(39, 136, 102), #116e4d);
   transform: scale(100%);
+  cursor: pointer;
 }
 
 .btn:active {
@@ -180,7 +181,7 @@ section {
 
 .buttons-like-dislike button {
   border: none;
-  background-color: rgb(169, 163, 163);
+  background-color: #355c48;
   font-size: 18px;
   padding: 6px 12px;
   border-radius: 100px;
@@ -193,10 +194,12 @@ section {
 
 .buttons-like-dislike button:hover {
   background-color: rgb(132, 127, 127);
+  background-color: #013d29;
+  color: #ffffff;
 }
 
 .buttons-like-dislike button:disabled {
-  background-color: #36312c;
+  background-color: #264935;
 }
 
 .story-form input,
