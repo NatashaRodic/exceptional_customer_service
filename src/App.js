@@ -27,7 +27,7 @@ const initialStories = [
     id: 3,
     text: "Fromage frais feta chalk and cheese. Swiss fromage frais cheese and biscuits croque monsieur bavarian bergkase cheese strings red leicester goat. ",
     source: "http://www.cheeseipsum.co.uk/",
-    category: "Packa  ges",
+    category: "Packages",
     votesLike: 8,
     votesDislike: 3,
     votesMindblowing: 1,
@@ -89,16 +89,11 @@ function Loader() {
 }
 
 function Header({ showForm, setShowForm }) {
-  const appTitle = "Bozzuto Experience";
+  const appTitle = "Exceptional Customer Experience";
   return (
     <header className="header">
       <div className="logo">
-        <img
-          src="box_bozzuto.png"
-          height="68"
-          width="100"
-          alt="Today I helped Logo"
-        />
+
       </div>
       <div className="headerimages">
         <img
@@ -125,7 +120,6 @@ const CATEGORIES = [
   { name: "Leasing", color: "#ef4444" },
   { name: "Events/Social", color: "#eab308" },
   { name: "Maintenance Requests", color: "#db2777" },
-  { name: "Bozzuto Standards", color: "#14b8a6" },
   { name: "Team work", color: "#f97316" },
   { name: "Exceptional Service", color: "#8b5cf6" },
 ];
